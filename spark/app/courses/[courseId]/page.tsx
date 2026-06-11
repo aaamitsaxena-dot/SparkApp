@@ -145,9 +145,8 @@ export default async function CoursePage({ params }: { params: Promise<{ courseI
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               { icon: '📖', title: 'Read the Lesson', desc: 'Each day covers a focused topic with key concepts and learning objectives. Mark it complete to earn 5 points.' },
-              { icon: '🔗', title: 'Explore Resources', desc: 'Free resources from Khan Academy, CK-12, NASA, PhET and more — all curated for your exact topic.' },
               { icon: '✅', title: 'Take the Quiz', desc: 'Multiple choice, single choice, and true/false questions test your understanding. Earn up to 50 points per day.' },
-              { icon: '🧪', title: 'Do the Experiment', desc: 'Hands-on experiments reinforce real understanding. Complete them for bonus points (25 pts each).' },
+              { icon: '📈', title: 'Track Progress', desc: 'Follow your 30-day plan, complete daily lessons, and monitor your growth with clear milestones.' },
             ].map(item => (
               <div key={item.title} className="bg-white border border-slate-200 rounded-xl p-4 flex gap-3">
                 <div className="text-2xl shrink-0">{item.icon}</div>

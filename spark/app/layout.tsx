@@ -11,7 +11,7 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "SparkApp — Student Study Platform",
   description:
-    "Fast-track study programs for students. 30-day plans, quizzes, experiments, and achievement levels.",
+    "Fast-track study programs for students. 30-day plans, quizzes, progress tracking, and achievement levels.",
 };
 
 export default function RootLayout({

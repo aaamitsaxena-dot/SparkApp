@@ -42,7 +42,7 @@ export default async function HomePage() {
           </h1>
           <p className="text-indigo-100 text-lg max-w-2xl mx-auto mb-8">
             Structured study plans aligned to your school&apos;s curriculum — with quizzes,
-            experiments, and achievement levels. Perfect for summer break or anytime you want to get ahead.
+            progress tracking, and achievement levels. Perfect for summer break or anytime you want to get ahead.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {user ? (
@@ -112,7 +112,7 @@ export default async function HomePage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-extrabold text-orange-900 mb-2">Earn Achievement Levels 🏆</h2>
           <p className="text-orange-800 mb-6 text-sm font-medium">
-            Complete lessons, ace quizzes, and do experiments to earn points and climb the ranks
+            Complete lessons and ace quizzes to earn points and climb the ranks
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[

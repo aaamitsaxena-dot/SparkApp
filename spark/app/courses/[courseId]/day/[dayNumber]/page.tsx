@@ -3,10 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import Nav from '@/components/Nav'
 import MarkLessonComplete from './MarkLessonComplete'
-import ExperimentCard from '@/components/ExperimentCard'
-import { ChevronRight, ExternalLink } from 'lucide-react'
-import { resourceTypeColor, resourceTypeLabel } from '@/lib/utils'
-import type { Resource, Experiment } from '@/lib/types'
+import { ChevronRight } from 'lucide-react'
 
 export default async function DayPage({
   params,
@@ -35,18 +32,6 @@ export default async function DayPage({
   if (!day) notFound()
 
   const { data: program } = await supabase.from('programs').select('id,name').eq('id', courseId).single()
-
-  const { data: resources } = await supabase
-    .from('resources')
-    .select('*')
-    .eq('study_day_id', day.id)
-    .order('order_index')
-
-  const { data: experiment } = await supabase
-    .from('experiments')
-    .select('*')
-    .eq('study_day_id', day.id)
-    .single()
 
   const { data: progress } = await supabase
     .from('user_progress')
@@ -151,36 +136,6 @@ export default async function DayPage({
           )}
         </div>
 
-        {/* Free Resources */}
-        {resources && resources.length > 0 && (
-          <section>
-            <h2 className="text-base font-extrabold text-indigo-900 mb-3">📚 Free Resources</h2>
-            <div className="space-y-3">
-              {(resources as Resource[]).map(r => (
-                <a
-                  key={r.id}
-                  href={r.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 bg-white border-2 border-violet-100 hover:border-violet-400 hover:shadow-md rounded-2xl p-4 group transition"
-                >
-                  <span className={`text-xs font-bold rounded-full px-2.5 py-1 shrink-0 mt-0.5 ${resourceTypeColor(r.resource_type)}`}>
-                    {resourceTypeLabel(r.resource_type)}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-bold text-sm text-indigo-900 group-hover:text-violet-700 transition">{r.title}</div>
-                    <div className="text-xs font-semibold text-violet-500 mb-1">{r.source}</div>
-                    {r.description && (
-                      <p className="text-xs text-slate-600 leading-relaxed">{r.description}</p>
-                    )}
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-violet-400 shrink-0 mt-0.5 group-hover:text-violet-600" />
-                </a>
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* Mark lesson complete */}
         <MarkLessonComplete
           userId={user.id}
@@ -214,17 +169,6 @@ export default async function DayPage({
             </Link>
           </div>
         </section>
-
-        {/* Experiment */}
-        {experiment && (
-          <ExperimentCard
-            experiment={experiment as Experiment}
-            userId={user.id}
-            programId={courseId}
-            studyDayId={day.id}
-            isComplete={progress?.experiment_completed ?? false}
-          />
-        )}
 
         {/* Navigation */}
         <div className="flex items-center justify-between pt-4 border-t-2 border-violet-100">
